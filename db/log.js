@@ -1,7 +1,7 @@
 const fs = require('fs');
 const util = require('util');
 // package to make unique id's for each note
-const uuid = require('uuid/v1');
+const uuid = require('uuid');
 
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
@@ -16,7 +16,7 @@ class Log {
 
     //writes files in the db.json and converts them in JSON format
     write(note) {
-        return writeFile('db/db.json', JSON.stringify(note))
+        return writeFile('./db.json', JSON.stringify(note))
     }
 
     getNotes() {
@@ -32,4 +32,30 @@ class Log {
             return noteParser
         })
     }
+
+    // method to add notes to the db.json file
+addNotes(note){
+const { title, input } = note;
+// assign a unique id to the body of the newNote using uuid - https://www.npmjs.com/package/uuid
+const newNote = { title, input, id: uuid()};
+
+//Get all notes from the db.json files
+return this.getNotes()
+// Add the new note
+.then(notes => [...notes, newNote])
+// Write the updated notes
+.then(updateNotes => this.write(updateNotes))
+//return the new note
+.then(() => newNote)
 }
+
+// method to add notes from db.json file
+deleteNote(id){
+    return this.getNotes()
+    .then(notes => notes.filter(note => note.id !== id))
+    .then(filterNotes => this.write(filterNotes));
+}
+
+}
+
+module.exports = new Log();
