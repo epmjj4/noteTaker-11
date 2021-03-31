@@ -17,7 +17,7 @@ app.use('/', htmlRoutes)
 // set up server listener
 
 app.listen(PORT, () => {
-    console.log("Server is listening on PORT: ${port");
+    console.log(`Server is listening on PORT: ${PORT}`);
 })
 
 
