@@ -17,5 +17,4 @@ https://epmjj4.github.io/noteTaker-11/
 https://safe-shelf-63822.herokuapp.com/
 
 
-
-I created the express module as well as the apirRoutes and htmlRoutes in the server.js file. In the apiRoutes folder I setup the router to use express as well as the get, post, delete functions. In the log.js file, I set up the drivers for the fs and util. I also created the class log function with read/write/getnotes/addnotes/delete functions. 
+In the db folder, inside the log.js file, I setup the fs, uuid, and util drivers. I also created the class log with read, write, getNotes, addNotes, and deleteNote methods. Under the routes folder, I created the apiRoutes and htmlRoutes js files so I can route the data and render it to the html page. In the server js file I installed the express module as well as the routes for the apiRoutes and htmlRoutes. 
